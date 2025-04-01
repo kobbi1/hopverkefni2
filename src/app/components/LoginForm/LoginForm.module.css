@@ -1,0 +1,43 @@
+.formContainer {
+    display:flex;
+    justify-content:center;
+    padding:2px;
+}
+
+.form {
+    display:flex;
+    width:50vw;
+    flex-direction:column;
+    padding:1rem;
+    justify-content:center;
+}
+
+.input {
+    border-radius: 5px;
+    height:50px;
+    font-size:2rem;
+    padding:2rem;
+    text-align:center;
+}
+
+.label {
+    display:flex;
+    justify-content:center;
+
+}
+
+.button {
+    border-radius: 5px;
+    background-color:cyan;
+    font-family:'Courier New', Courier, monospace;
+    font-weight:bold;
+    font-size:1rem;
+    padding:1rem;
+    margin-top:12px;
+    margin-bottom:12px;
+}
+
+.button:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05);
+}

@@ -2,14 +2,14 @@
 import styles from "./page.module.css";
 import Navigation from "../components/Navigation/Navigation";
 import Footer from "../components/Footer/Footer";
-import LoginForm from "../components/LoginForm/LoginForm"
+import SignupForm from "../components/SignupForm/SignupForm"
 
-export default function loginPage() {
+export default function signupPage() {
   return (
     <div  className={styles.page}>
       <Navigation />
-      <h1 className={styles.mainContent}>Login</h1>
-      <LoginForm />
+      <h1 className={styles.mainContent}>Sign up</h1>
+      <SignupForm />
       <Footer/>
       <h2></h2>
     </div>

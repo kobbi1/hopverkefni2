@@ -11,7 +11,8 @@ interface MoviesPageProps {
   }
 
 export default async function MoviesPage({ searchParams }: MoviesPageProps) {
-    const page = parseInt(searchParams.page || "1");
+    const params = await searchParams;
+    const page = parseInt(params.page || "1");
     const api = new MovieRentalApi();
     const result = await api.getMovies(page);
 
@@ -25,7 +26,7 @@ export default async function MoviesPage({ searchParams }: MoviesPageProps) {
       <div className={styles.page}>
         <Navigation/>
         <div className={styles.mainContent}>
-            <h1 className="text-2xl font-bold mb-4">Available Movies - Page {meta.page}</h1>
+            <h1>Available Movies - Page {meta.page}</h1>
             <div className={styles.nextPrevious}>
                 {meta.page > 1 && (
                     <Link href={`/movies?page=${meta.page - 1}`}>← Previous</Link>
@@ -43,7 +44,6 @@ export default async function MoviesPage({ searchParams }: MoviesPageProps) {
                 alt={movie.title}
                 width={150}
                 height={225}
-                className="rounded shadow"
                 />
                 <div className={styles.movieInfo}>
                 <h2>{movie.title}</h2>
