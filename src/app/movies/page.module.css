@@ -1,0 +1,36 @@
+.page {
+    background-color: #D4BE86;
+    height:100vh
+}
+
+.mainContent {
+    display:flex;
+    flex-direction:column;
+    padding:1rem;
+    align-items:center;
+}
+
+.movies {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.movie {
+    display:flex;
+    flex: 33%;
+    margin:33px;
+    border:1px solid black;
+    border-radius:5px;
+}
+
+.movieInfo {
+    padding:12px;
+}
+
+.nextPrevious {
+    display:flex;
+
+    font-size:20px;
+    padding-left:10px;
+    
+}
