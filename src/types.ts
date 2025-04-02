@@ -59,3 +59,12 @@ export interface RentalInput {
   userId: number;
   movieId: number;
 }
+
+
+export interface TokenPayload {
+    id: number;
+    role: "USER" | "ADMIN";
+    iat: number;
+    exp: number;
+}
+

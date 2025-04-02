@@ -4,16 +4,21 @@ import Link from "next/link";
 import styles from "./Navigation.module.css";
 import { MovieRentalApi } from "@/api";
 import {useEffect, useState} from "react";
-import { usePathname } from "next/navigation";
-import router from "next/router";
+import { usePathname, useRouter} from "next/navigation";
 
 export default function Navigation() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
     setIsLoggedIn(!!token);
+    setIsAdmin(role === "ADMIN");
   },[pathname])
 
   async function handleLogout() {
@@ -23,6 +28,7 @@ export default function Navigation() {
 
     if (success) {
       setIsLoggedIn(false);
+      setIsAdmin(false);
       router.push('/login');
     }
   }
@@ -31,6 +37,9 @@ export default function Navigation() {
     <ul>
       <li><Link href="/">Home</Link></li>
       <li><Link href="/movies">Movies</Link></li>
+      {isLoggedIn && isAdmin && (
+        <li><Link href="/admin">Admin Panel</Link></li>
+      )}
       {!isLoggedIn && (
         <div>
           <li><Link href="/login">Login</Link></li>
