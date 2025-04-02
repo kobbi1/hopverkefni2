@@ -134,4 +134,8 @@ export class MovieRentalApi {
         });
         return res.ok;
         }
+
+    async getAllMovies(): Promise<Movie[] | null> {
+        return await this.fetchFromApi<Movie[]>(`${BASE_URL}/movies/all`);
+        }
   }
