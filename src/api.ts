@@ -1,5 +1,13 @@
 import { Movie,PaginatedMovies,Rental,MovieInput,RentalInput,AuthResponse,RegisterResponse } from "./types";
 
+/*
+BASE URLS
+
+http://localhost:5050
+
+https://vef-2025-h1.onrender.com
+
+*/
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:5050";
 
 export class MovieRentalApi {
@@ -34,6 +42,11 @@ export class MovieRentalApi {
             body: JSON.stringify({ email, password }),
         });
     }
+
+    async signout(): Promise<boolean> {
+        localStorage.removeItem("token");
+        return true;
+      }
   
     async getMovies(page: number = 1): Promise<PaginatedMovies | null> {
         return await this.fetchFromApi<PaginatedMovies>(`${BASE_URL}/movies?page=${page}`);
