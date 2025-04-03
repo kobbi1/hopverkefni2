@@ -1,10 +1,11 @@
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation"; // ⬅️ Needed for redirecting
 import { decodeJwt } from "jose";
 import { MovieRentalApi } from "@/api";
 import Navigation from "@/app/components/Navigation/Navigation";
 import Footer from "@/app/components/Footer/Footer";
 import Link from "next/link";
-import ReturnButton from "@/app/components/ReturnButton"; 
+import ReturnButton from "../components/ReturnButton";
 
 interface DecodedToken {
   id: number;
@@ -13,40 +14,24 @@ interface DecodedToken {
 }
 
 export default async function MyRentalsPage() {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("token")?.value;
+  const token = (await cookies()).get("token")?.value;
 
   if (!token) {
-    return (
-      <div>
-        <Navigation />
-        <main style={{ padding: "2rem" }}>
-          <h1>My Rentals</h1>
-          <p>Please log in to view your rentals.</p>
-        </main>
-        <Footer />
-      </div>
-    );
+    redirect("/login"); // ⬅️ Not logged in? Go to login page
   }
 
   let userId: number;
-
   try {
     const decoded = decodeJwt(token) as DecodedToken;
-    if (!decoded.id) throw new Error("Token missing user id");
+
+    if (!decoded.id) {
+      throw new Error("Token missing user id");
+    }
+
     userId = decoded.id;
   } catch (err) {
     console.error("JWT decode error:", err);
-    return (
-      <div>
-        <Navigation />
-        <main style={{ padding: "2rem" }}>
-          <h1>My Rentals</h1>
-          <p>Invalid session. Please log in again.</p>
-        </main>
-        <Footer />
-      </div>
-    );
+    redirect("/login"); // ⬅️ Bad token? Also go to login page
   }
 
   const api = new MovieRentalApi();
@@ -57,6 +42,7 @@ export default async function MyRentalsPage() {
       <Navigation />
       <main style={{ padding: "2rem" }}>
         <h1>My Rentals</h1>
+
         {rentals && rentals.length > 0 ? (
           <ul style={{ listStyle: "none", padding: 0 }}>
             {rentals.map((rental) => (
@@ -77,7 +63,6 @@ export default async function MyRentalsPage() {
                   <p>Returned on: {new Date(rental.returnDate).toLocaleDateString()}</p>
                 )}
                 <p>Status: <strong>{rental.status}</strong></p>
-
                 {rental.status === "RENTED" && (
                   <ReturnButton rentalId={rental.id} />
                 )}
