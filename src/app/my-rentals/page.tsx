@@ -4,15 +4,17 @@ import { MovieRentalApi } from "@/api";
 import Navigation from "@/app/components/Navigation/Navigation";
 import Footer from "@/app/components/Footer/Footer";
 import Link from "next/link";
+import ReturnButton from "@/app/components/ReturnButton"; 
 
 interface DecodedToken {
-  id: number; // ✅ Matches your backend token payload
+  id: number;
   role: string;
   email?: string;
 }
 
 export default async function MyRentalsPage() {
-  const token = (await cookies()).get("token")?.value;
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("token")?.value;
 
   if (!token) {
     return (
@@ -28,15 +30,11 @@ export default async function MyRentalsPage() {
   }
 
   let userId: number;
+
   try {
     const decoded = decodeJwt(token) as DecodedToken;
-
-    if (!decoded.id) {
-      throw new Error("Token missing user id");
-    }
-
+    if (!decoded.id) throw new Error("Token missing user id");
     userId = decoded.id;
-    console.log("🧠 Decoded token:", decoded);
   } catch (err) {
     console.error("JWT decode error:", err);
     return (
@@ -59,7 +57,6 @@ export default async function MyRentalsPage() {
       <Navigation />
       <main style={{ padding: "2rem" }}>
         <h1>My Rentals</h1>
-
         {rentals && rentals.length > 0 ? (
           <ul style={{ listStyle: "none", padding: 0 }}>
             {rentals.map((rental) => (
@@ -75,18 +72,14 @@ export default async function MyRentalsPage() {
                 <Link href={`/movies/${rental.movie?.id}`}>
                   <h2>{rental.movie?.title}</h2>
                 </Link>
-                <p>
-                  Status: <strong>{rental.status}</strong>
-                </p>
-                <p>
-                  Rented on:{" "}
-                  {new Date(rental.rentalDate).toLocaleDateString()}
-                </p>
+                <p>Rented on: {new Date(rental.rentalDate).toLocaleDateString()}</p>
                 {rental.returnDate && (
-                  <p>
-                    Returned on:{" "}
-                    {new Date(rental.returnDate).toLocaleDateString()}
-                  </p>
+                  <p>Returned on: {new Date(rental.returnDate).toLocaleDateString()}</p>
+                )}
+                <p>Status: <strong>{rental.status}</strong></p>
+
+                {rental.status === "RENTED" && (
+                  <ReturnButton rentalId={rental.id} />
                 )}
               </li>
             ))}
