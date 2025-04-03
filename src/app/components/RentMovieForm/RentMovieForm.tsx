@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { MovieRentalApi } from "@/api";
-import { RentalInput, Rental } from "@/types";
+import { RentalInput, Rental, TokenPayload } from "@/types";
+import { jwtDecode } from "jwt-decode";
 
 export default function RentMovieForm({ presetMovieId }: { presetMovieId?: number }) {
   const [userId, setUserId] = useState<number | null>(null);
@@ -13,11 +14,15 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
   // ✅ Check login status
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const storedUserId = localStorage.getItem("userId");
-    console.log(storedUserId+"********")
+    if(!token) {
+      return;
+    }
+    const decoded = jwtDecode<TokenPayload>(token);
+    if (!decoded.id) throw new Error("Missing user id");
+    
 
-    if (token && storedUserId) {
-      setUserId(Number(storedUserId));
+    if (token && decoded) {
+      setUserId(Number(decoded.id));
     } else {
       setUserId(null); // Not logged in
     }
