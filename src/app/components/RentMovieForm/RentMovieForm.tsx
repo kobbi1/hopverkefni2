@@ -1,32 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieRentalApi } from "@/api";
-import { RentalInput, Rental } from "@/types";
-import Cookies from "js-cookie";
-import { decodeJwt } from "jose";
-
-const api = new MovieRentalApi();
+import { RentalInput, Rental, TokenPayload } from "@/types";
+import { jwtDecode } from "jwt-decode";
 
 export default function RentMovieForm({ presetMovieId }: { presetMovieId?: number }) {
-  const token = Cookies.get("token");
-  const decoded = token ? decodeJwt(token) as { id: number } : null;
-  const userId = decoded?.id;
-
+  const [userId, setUserId] = useState<number | null>(null);
   const [movieId, setMovieId] = useState<number>(presetMovieId ?? 1);
   const [rental, setRental] = useState<Rental | null>(null);
   const [error, setError] = useState<string>("");
+
+  // ✅ Check login status
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if(!token) {
+      return;
+    }
+    const decoded = jwtDecode<TokenPayload>(token);
+    if (!decoded.id) throw new Error("Missing user id");
+    
+
+    if (token && decoded) {
+      setUserId(Number(decoded.id));
+    } else {
+      setUserId(null); // Not logged in
+    }
+  }, []);
+
+  if (userId === null) {
+    // 👇 If user is not logged in, show nothing (or return null)
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!userId) {
-      setError("You must be logged in to rent a movie.");
-      return;
-    }
-
     const rentalData: RentalInput = { userId, movieId };
+    const api = new MovieRentalApi();
     const result = await api.rentMovie(rentalData);
 
     if (result) {
@@ -38,8 +50,8 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
 
   return (
     <div>
-      <h2>🎬 Rent This Movie</h2>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.5rem", maxWidth: 300 }}>
+      <h2>🎬 <strong>Rent This Movie</strong></h2>
+      <form onSubmit={handleSubmit}>
         {!presetMovieId && (
           <label>
             Movie ID:
@@ -50,15 +62,15 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
       </form>
 
       {rental && (
-        <div style={{ marginTop: "1rem" }}>
+        <p style={{ color: "#81c784" }}>
           ✅ Rental Created: Rental ID {rental.id}
-        </div>
+        </p>
       )}
 
       {error && (
-        <div style={{ marginTop: "1rem", color: "red" }}>
-           {error}
-        </div>
+        <p style={{ color: "#e57373" }}>
+          ⚠️ {error}
+        </p>
       )}
     </div>
   );

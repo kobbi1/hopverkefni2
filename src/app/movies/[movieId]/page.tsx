@@ -11,4 +11,5 @@ export default async function MovieDetailPage({ params }: { params: { movieId: s
   }
 
   return <MovieDetails movie={movie} />;
+
 }
