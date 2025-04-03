@@ -68,3 +68,6 @@ export interface TokenPayload {
     exp: number;
 }
 
+export interface MoviesPageProps {
+    searchParams: { page?: string };
+  }
