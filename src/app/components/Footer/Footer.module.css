@@ -1,5 +1,6 @@
 .footer {
-    text-align: center;
+    display:flex;
+    justify-content:center;
     padding: 1rem;
     background-color: #c8ac64;
     position: fixed;
@@ -8,3 +9,15 @@
     height:5%;
     font-size: 18px;
 }
+
+.footerContent {
+    display: flex;
+    justify-content: space-between; /* or space-around */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .adminPanelOptions {
+    color:red;
+  }

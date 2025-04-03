@@ -6,6 +6,7 @@ import styles from "./AdminDashboard.module.css"
 import AddMovieForm from "./AddMovieForm";
 import UpdateMovieForm from "./UpdateMovieForm";
 import RemoveMovieForm from "./RemoveMovieForm";
+import Link from "next/link";
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -33,7 +34,7 @@ export default function AdminDashboard() {
       
       <div className={styles.page}>
         <section className={styles.manageMoviesContainer}>
-          <div className="border p-4 rounded shadow">
+          <div>
             <h2 className="text-xl font-semibold">Manage Movies</h2>
             <button onClick={() => setShowAddForm(!showAddForm)}>
             {showAddForm ? "Cancel" : "Add a movie"}
@@ -51,6 +52,12 @@ export default function AdminDashboard() {
 
             {showRemoveForm && <RemoveMovieForm />}
           </div>
+        </section>
+        <section className={styles.manageRentalsContainer}>
+            <div>
+                <h2>Manage Rentals</h2>
+                <Link href="/all-rentals">All Rentals</Link>
+            </div>
         </section>
       </div>
     );

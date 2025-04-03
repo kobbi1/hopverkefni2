@@ -8,7 +8,6 @@ import { usePathname, useRouter} from "next/navigation";
 
 export default function Navigation() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -18,7 +17,6 @@ export default function Navigation() {
     const role = localStorage.getItem("role");
 
     setIsLoggedIn(!!token);
-    setIsAdmin(role === "ADMIN");
   },[pathname])
 
   async function handleLogout() {
@@ -28,7 +26,6 @@ export default function Navigation() {
 
     if (success) {
       setIsLoggedIn(false);
-      setIsAdmin(false);
       router.push('/login');
     }
   }
@@ -37,9 +34,6 @@ export default function Navigation() {
     <ul>
       <li><Link href="/">Home</Link></li>
       <li><Link href="/movies">Movies</Link></li>
-      {isLoggedIn && isAdmin && (
-        <li><Link href="/admin">Admin Panel</Link></li>
-      )}
       {!isLoggedIn && (
         <div>
           <li><Link href="/login">Login</Link></li>
