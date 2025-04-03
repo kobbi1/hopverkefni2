@@ -57,7 +57,7 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
 
       {error && (
         <div style={{ marginTop: "1rem", color: "red" }}>
-          ❌ {error}
+           {error}
         </div>
       )}
     </div>
