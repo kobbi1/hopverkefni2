@@ -6,6 +6,8 @@ import {MovieRentalApi} from "@/api";
 import { useRouter } from "next/navigation";
 import {jwtDecode} from "jwt-decode";
 import { TokenPayload } from "../../../types";
+import Cookies from "js-cookie"; 
+
 
 export default function LoginForm() {
     const router = useRouter();
@@ -15,22 +17,26 @@ export default function LoginForm() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-    
+      
         const api = new MovieRentalApi();
         const result = await api.login(email, password);
-    
+      
         if (result && result.token) {
-            localStorage.setItem("token", result.token);
-
-            const decoded = jwtDecode<TokenPayload>(result.token)
-            const decodedRole = decoded.role
-
-            localStorage.setItem("role", decodedRole);
-
-            router.push("/");
-            console.log("Logged in as:", decodedRole)
+          // Store in localStorage (for client-side logic)
+          localStorage.setItem("token", result.token);
+      
+          // ✅ Also store in cookies (so server can access it)
+          Cookies.set("token", result.token, { path: "/" });
+      
+          const decoded = jwtDecode<TokenPayload>(result.token);
+          const decodedRole = decoded.role;
+      
+          localStorage.setItem("role", decodedRole);
+      
+          console.log("Logged in as:", decodedRole);
+          router.push("/");
         } else {
-            setMessage("Login failed, please check your email or password");
+          setMessage("Login failed, please check your email or password");
         }
       }
     return (
