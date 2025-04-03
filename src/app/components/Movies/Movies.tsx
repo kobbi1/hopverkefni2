@@ -28,7 +28,7 @@ export default function Movies({ page }: MoviesProps) {
   }, [page]);
 
   if (loading) return (
-    <div className={styles.mainContent}>
+    <div className={styles.loadingMovies}>
         <h2>Loading movies...</h2>
     </div>
     
@@ -58,6 +58,7 @@ export default function Movies({ page }: MoviesProps) {
               alt={movie.title}
               width={150}
               height={225}
+              className={styles.moviePoster}
             />
             <div className={styles.movieInfo}>
               <Link href={`/movies/${movie.id}`}>

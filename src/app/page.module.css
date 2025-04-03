@@ -2,8 +2,34 @@
     background-color: #f0fdfa; /* soft mint/neutral */
     height:100vh;
     padding-bottom: 2rem;
+
   }
 
+  .section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    max-width: 1000px;
+    padding: 2rem;
+  }
+  
+  .paragraph {
+    flex: 1 1 60%;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #1a2e2b;
+    margin: 0;
+  }
+  
+  .mintImage {
+    flex: 0 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+  }
 
 .mainContent {
     align-items:center;
