@@ -94,7 +94,7 @@ export default function UpdateMovieForm() {
           <input name="rentalPrice" type="number" placeholder="Rental Price" value={formData.rentalPrice} onChange={handleChange} />
           <input name="availableCopies" type="number" placeholder="Available Copies" value={formData.availableCopies} onChange={handleChange}/>
           <input type="file" accept="image/*" onChange={(e) => setFormData({ ...formData, posterFile: e.target.files?.[0] || null })} />
-          <button type="submit">Update Movie</button>
+          <button className={styles.submitButton} type="submit">Update Movie</button>
           {message && <p>{message}</p>}
         </form>
       )}

@@ -27,17 +27,43 @@
 }
 
 .button {
-    border-radius: 5px;
-    background-color:cyan;
+    border: none;
+    border-radius: 6px;
+    background-color:#004d40;
     font-family:'Courier New', Courier, monospace;
-    font-weight:bold;
+    color: #ffffff;
+    font-weight: 600;
     font-size:1rem;
     padding:1rem;
     margin-top:12px;
     margin-bottom:12px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .button:hover {
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.05);
+    background: #00695c;
 }
+
+.button:active {
+    background-color: #00332f;
+    transform: translateY(0);
+  }
+
+
+.submitButton {
+    background-color: #004d40; /* dark teal */
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #00695c; /* slightly lighter on hover */
+    transform: translateY(-1px);
+  }
+  

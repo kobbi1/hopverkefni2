@@ -63,7 +63,6 @@ export default function Movies({ page }: MoviesProps) {
               <Link href={`/movies/${movie.id}`}>
                 <h2 className={styles.movieTitle}>{movie.title}</h2>
               </Link>
-              <h4>Release year: {movie.releaseYear}</h4>
               <p>Price: {movie.rentalPrice} ISK</p>
               <p>Available Copies: {movie.availableCopies}</p>
             </div>

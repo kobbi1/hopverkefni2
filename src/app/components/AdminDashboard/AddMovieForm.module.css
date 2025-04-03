@@ -19,4 +19,24 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+.submitButton {
+    background-color: #004d40; /* dark teal */
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
   
+  .submitButton:hover {
+    background-color: #00695c; /* slightly lighter on hover */
+    transform: translateY(-1px);
+  }
+  
+  .submitButton:active {
+    background-color: #00332f;
+    transform: translateY(0);
+  }

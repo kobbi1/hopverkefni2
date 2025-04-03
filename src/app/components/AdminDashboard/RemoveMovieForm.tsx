@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MovieRentalApi } from "@/api";
 import { Movie } from "@/types";
 import styles from "./AddMovieForm.module.css";
@@ -10,7 +10,7 @@ export default function RemoveMovieForm() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [message, setMessage] = useState("");
 
-  const api = new MovieRentalApi();
+  const api = useMemo(() => new MovieRentalApi(), []);
 
   useEffect(() => {
     async function fetchMovies() {
@@ -19,7 +19,7 @@ export default function RemoveMovieForm() {
     }
 
     fetchMovies();
-  }, []);
+  }, [api]);
 
   async function handleDelete() {
     if (!selectedId) return;
@@ -42,7 +42,7 @@ export default function RemoveMovieForm() {
   }
 
   return (
-    <div>
+    <div className={styles.form}>
       <label>Select a movie to delete:</label>
       <select
         value={selectedId ?? ""}
@@ -55,9 +55,7 @@ export default function RemoveMovieForm() {
           </option>
         ))}
       </select>
-
-      <br /><br />
-      <button onClick={handleDelete} className={styles.button}>
+      <button onClick={handleDelete} className={styles.submitButton}>
         Delete Movie
       </button>
       {message && <p>{message}</p>}

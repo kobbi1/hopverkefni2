@@ -1,14 +1,14 @@
 .footer {
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
     padding: 1rem;
-    background-color: #c8ac64;
+    background-color: #b2eddf;
     position: fixed;
     bottom: 0;
     width: 80%;
-    height:5%;
-    font-size: 18px;
-}
+    height: 5%;
+    padding-bottom:3rem;
+  }
 
 .footerContent {
     display: flex;
@@ -20,4 +20,25 @@
 
   .adminPanelOptions {
     color:red;
+  }
+
+  .adminPanelOptions {
+    background-color: #004d40; /* dark teal */
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .adminPanelOptions:hover {
+    background-color: #00695c; /* slightly lighter on hover */
+    transform: translateY(-1px);
+  }
+  
+  .adminPanelOptions:active {
+    background-color: #00332f;
+    transform: translateY(0);
   }
