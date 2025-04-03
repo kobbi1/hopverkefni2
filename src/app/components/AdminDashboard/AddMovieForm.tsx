@@ -57,7 +57,7 @@ export default function AddMovieForm() {
       <input className={styles.input} type="number" placeholder="Rental Price" value={rentalPrice} onChange={(e) => setRentalPrice(Number(e.target.value))} required />
       <input className={styles.input} type="number" placeholder="Available Copies" value={availableCopies} onChange={(e) => setAvailableCopies(Number(e.target.value))} required />
       <input className={styles.input} type="file" accept="image/*" onChange={(e) => setPosterFile(e.target.files?.[0] || null)} />
-      <button className={styles.addMovieButton} type="submit">Submit</button>
+      <button className={styles.submitButton} type="submit">Submit</button>
       {message && <p>{message}</p>}
     </form>
   );

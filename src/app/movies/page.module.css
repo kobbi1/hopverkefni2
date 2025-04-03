@@ -1,13 +1,14 @@
 .page {
-    background-color: #D4BE86;
-    height:100vh
-}
+    background-color: #f0fdfa; /* soft mint/neutral */
+    padding-bottom: 2rem;
+  }
 
 .mainContent {
     display:flex;
     flex-direction:column;
     padding:1rem;
     align-items:center;
+    color:#1a2e2b;
 }
 
 .movies {

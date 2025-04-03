@@ -7,7 +7,7 @@ export default async function MovieDetailPage({ params }: { params: { movieId: s
   const movie = await api.getMovieById(movieId);
 
   if (!movie) {
-    return <p style={{ padding: "2rem" }}>Movie not found</p>;
+    return <p>Movie not found</p>;
   }
 
   return <MovieDetails movie={movie} />;

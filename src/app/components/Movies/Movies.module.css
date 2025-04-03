@@ -1,0 +1,97 @@
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  color:#1a2e2b;
+}
+
+
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 on large screens */
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f0fdfa;
+  }
+
+  .movie {
+    background-color: #ffffff;
+    border: 1px solid #b2dfdb;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px; /* ⬅️ caps individual card size */
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .movie:hover {
+    transform: scale(1.03);
+  }
+  
+  .moviePoster {
+    width: 100%;
+    height: 300px; /* Reduce this for less height */
+    object-fit: cover;
+  }
+  
+  .movieInfo {
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .movieTitle {
+    color: #004d40;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0.3rem 0;
+  }
+
+.nextPrevious {
+  display: flex;
+  gap: 2rem;
+  font-size: 18px;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.nextPrevious a {
+  color: #00bfa5;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.nextPrevious a:hover {
+  border-color: #00bfa5;
+}
+
+.loadingBackground {
+    background-color:#f0fdfa;
+    height:100vh;
+}
+
+.loadingMovies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color:#1a2e2b;
+    background-color:#f0fdfa;
+    height:100vh;
+}
