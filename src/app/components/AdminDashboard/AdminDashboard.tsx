@@ -34,19 +34,19 @@ export default function AdminDashboard() {
       
       <div className={styles.page}>
         <section className={styles.manageMoviesContainer}>
-          <div>
+          <div className={styles.manageMoviesButtons}>
             <h2 className="text-xl font-semibold">Manage Movies</h2>
-            <button onClick={() => setShowAddForm(!showAddForm)}>
+            <button className={styles.adminButtons} onClick={() => setShowAddForm(!showAddForm)}>
             {showAddForm ? "Cancel" : "Add a movie"}
             </button>
             {showAddForm && <AddMovieForm />}
 
-            <button onClick={() => setShowUpdateForm(!showUpdateForm)}>
+            <button className={styles.adminButtons} onClick={() => setShowUpdateForm(!showUpdateForm)}>
             {showUpdateForm ? "Cancel" : "Update a movie"}
             </button>
             {showUpdateForm && <UpdateMovieForm />}
 
-            <button onClick={() => setShowRemoveForm(!showRemoveForm)}>
+            <button className={styles.adminButtons} onClick={() => setShowRemoveForm(!showRemoveForm)}>
             {showRemoveForm ? "Cancel" : "Remove a movie"}
             </button>
 
@@ -54,9 +54,9 @@ export default function AdminDashboard() {
           </div>
         </section>
         <section className={styles.manageRentalsContainer}>
-            <div>
+            <div className={styles.manageMoviesButtons}>
                 <h2>Manage Rentals</h2>
-                <Link href="/all-rentals">All Rentals</Link>
+                <Link className={styles.adminButtons} href="/all-rentals">All Rentals</Link>
             </div>
         </section>
       </div>

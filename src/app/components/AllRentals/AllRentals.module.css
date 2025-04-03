@@ -1,0 +1,59 @@
+.page {
+    background-color: #D4BE86;
+    height:100vh
+}
+
+.mainContent {
+    align-items:center;
+    text-align:center;
+    padding:1rem;
+    margin:0 auto;
+}
+
+.rentalList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .rentalItem {
+    flex: 1 1 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  .rentalItem:hover {
+    transform: scale(1.02);
+  }
+  
+  .rentalItem p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+  }
+
+  .deleteButton {
+    margin-top: 1rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
+
+
+  .manageMoviesContainer {
+    border:1px solid black;
+  }
