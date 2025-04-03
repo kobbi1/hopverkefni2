@@ -3,11 +3,16 @@
 import { useState } from "react";
 import { MovieRentalApi } from "@/api";
 import { RentalInput, Rental } from "@/types";
+import Cookies from "js-cookie";
+import { decodeJwt } from "jose";
 
 const api = new MovieRentalApi();
 
 export default function RentMovieForm({ presetMovieId }: { presetMovieId?: number }) {
-  const [userId, setUserId] = useState<number>(1); 
+  const token = Cookies.get("token");
+  const decoded = token ? decodeJwt(token) as { id: number } : null;
+  const userId = decoded?.id;
+
   const [movieId, setMovieId] = useState<number>(presetMovieId ?? 1);
   const [rental, setRental] = useState<Rental | null>(null);
   const [error, setError] = useState<string>("");
@@ -15,6 +20,12 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    if (!userId) {
+      setError("You must be logged in to rent a movie.");
+      return;
+    }
+
     const rentalData: RentalInput = { userId, movieId };
     const result = await api.rentMovie(rentalData);
 
@@ -29,10 +40,6 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
     <div>
       <h2>🎬 Rent This Movie</h2>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.5rem", maxWidth: 300 }}>
-        <label>
-          User ID:
-          <input type="number" value={userId} onChange={(e) => setUserId(Number(e.target.value))} />
-        </label>
         {!presetMovieId && (
           <label>
             Movie ID:
@@ -44,13 +51,13 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
 
       {rental && (
         <div style={{ marginTop: "1rem" }}>
-           Rental Created: Rental ID {rental.id}
+          ✅ Rental Created: Rental ID {rental.id}
         </div>
       )}
 
       {error && (
         <div style={{ marginTop: "1rem", color: "red" }}>
-           {error}
+          ❌ {error}
         </div>
       )}
     </div>
