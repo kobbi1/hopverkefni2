@@ -23,7 +23,7 @@ export default function AllRentals() {
         } else {
           setIsAuthorized(true);
         }
-      }, []);
+      }, [router]);
 
     useEffect(() => {
         if (!isAuthorized) return;
@@ -59,7 +59,7 @@ export default function AllRentals() {
         return (
             <div className={styles.page}>
                 <div className={styles.mainContent}>
-                    <h1>Loading rentals...</h1>;
+                    <h1>Loading rentals...</h1>
                 </div>
             </div>
         )

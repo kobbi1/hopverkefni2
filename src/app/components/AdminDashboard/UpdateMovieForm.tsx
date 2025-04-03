@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MovieRentalApi } from "@/api";
 import styles from "./AddMovieForm.module.css";
 import { Movie } from "@/types";
@@ -18,7 +18,7 @@ export default function UpdateMovieForm() {
   });
   const [message, setMessage] = useState("");
 
-  const api = new MovieRentalApi();
+  const api = useMemo(() => new MovieRentalApi(), []);
 
   useEffect(() => {
     async function loadMovies() {
@@ -26,7 +26,7 @@ export default function UpdateMovieForm() {
       if (result) setMovies(result);
     }
     loadMovies();
-  }, []);
+  }, [api]);
 
   useEffect(() => {
     async function loadMovieDetails() {
@@ -44,7 +44,7 @@ export default function UpdateMovieForm() {
       }
     }
     loadMovieDetails();
-  }, [selectedId]);
+  }, [selectedId, api]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
