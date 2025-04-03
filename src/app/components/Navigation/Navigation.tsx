@@ -47,7 +47,11 @@ export default function Navigation() {
         </div>
       )}
       {isLoggedIn && (
-        <li><Link onClick={handleLogout} href="/">Logout</Link></li>
+        <div>
+          <Link href="/my-rentals">My rentals</Link>
+          <li><Link onClick={handleLogout} href="/">Logout</Link></li>
+        </div>
+      
       )}
     </ul>
     </nav>
