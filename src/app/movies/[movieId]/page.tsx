@@ -1,5 +1,7 @@
 import { MovieRentalApi } from "@/api";
+import Footer from "@/app/components/Footer/Footer";
 import MovieDetails from "@/app/components/MovieDetails/MovieDetails";
+import Navigation from "@/app/components/Navigation/Navigation";
 
 export default async function MovieDetailPage({ params }: { params: { movieId: string } }) {
   const movieId = parseInt(params.movieId);
@@ -10,6 +12,13 @@ export default async function MovieDetailPage({ params }: { params: { movieId: s
     return <p>Movie not found</p>;
   }
 
-  return <MovieDetails movie={movie} />;
+  return (
+    <div>
+      <Navigation />
+      <MovieDetails movie={movie} />
+      <Footer />
+    </div>
+
+);
 
 }

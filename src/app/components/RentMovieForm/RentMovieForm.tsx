@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { MovieRentalApi } from "@/api";
 import { RentalInput, Rental, TokenPayload } from "@/types";
 import { jwtDecode } from "jwt-decode";
+import styles from "../ReturnButton/ReturnButton.module.css"
 
 export default function RentMovieForm({ presetMovieId }: { presetMovieId?: number }) {
   const [userId, setUserId] = useState<number | null>(null);
@@ -11,7 +12,6 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
   const [rental, setRental] = useState<Rental | null>(null);
   const [error, setError] = useState<string>("");
 
-  // ✅ Check login status
   useEffect(() => {
     const token = localStorage.getItem("token");
     if(!token) {
@@ -24,12 +24,11 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
     if (token && decoded) {
       setUserId(Number(decoded.id));
     } else {
-      setUserId(null); // Not logged in
+      setUserId(null);
     }
   }, []);
 
   if (userId === null) {
-    // 👇 If user is not logged in, show nothing (or return null)
     return null;
   }
 
@@ -58,17 +57,17 @@ export default function RentMovieForm({ presetMovieId }: { presetMovieId?: numbe
             <input type="number" value={movieId} onChange={(e) => setMovieId(Number(e.target.value))} />
           </label>
         )}
-        <button type="submit">Rent</button>
+        <button className={styles.rentbutton} type="submit">Rent</button>
       </form>
 
       {rental && (
-        <p style={{ color: "#81c784" }}>
-          ✅ Rental Created: Rental ID {rental.id}
+        <p>
+          ✅ Movie has been rented, you should be able to see it in My rentals.
         </p>
       )}
 
       {error && (
-        <p style={{ color: "#e57373" }}>
+        <p>
           ⚠️ {error}
         </p>
       )}

@@ -1,6 +1,5 @@
 .page {
-    padding: 2rem;
-    background-color: #f9fdfc;
+    background-color: #f0fdfa;
     min-height: 100vh;
   }
   
@@ -8,6 +7,7 @@
     max-width: 800px;
     margin: 0 auto;
     color: #1a2e2b;
+    background-color: #f0fdfa;
   }
   
   .rentalList {
@@ -16,7 +16,7 @@
   }
   
   .rentalItem {
-    background: #f0fdfa;
+    background: #ffffff;
     border: 1px solid #b2dfdb;
     border-radius: 6px;
     padding: 1rem;
@@ -38,9 +38,3 @@
     transition: background-color 0.2s ease, transform 0.2s ease;
     cursor: pointer;
   }
-  
-  button:hover {
-    background-color: #00bfa5;
-    color: white;
-  }
-  
