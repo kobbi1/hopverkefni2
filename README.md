@@ -14,9 +14,6 @@ npm install
 
 **Admin Account Login Information:**
 ```bash
-POST request: http://localhost:5050/auth/login
-{
-  "email": "admin@admin.com",
-  "password": "hopverkefni1"
-}
+"email": "admin@admin.com",
+"password": "hopverkefni1"
 ```
