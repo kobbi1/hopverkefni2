@@ -1,0 +1,69 @@
+.page {
+    display:flex;
+    flex-direction: row;
+    background-color: #f0fdfa; /* soft mint/neutral */
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    justify-content:center;
+    align-items: center;
+  }
+
+.mainContent {
+    display:flex;
+    flex-direction:column;
+    padding:1rem;
+    align-items:center;
+    color:#1a2e2b;
+}
+
+.movies {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.movie {
+    display:flex;
+    flex: 33%;
+    margin:33px;
+    border:1px solid black;
+    border-radius:5px;
+}
+
+.movieInfo {
+    padding:12px;
+}
+
+.nextPrevious {
+    display:flex;
+    font-size:20px;
+    padding-left:10px;
+    
+}
+
+.titleAndPicture {
+    display: flex;
+    flex-direction: row; /* ← Switch from column to row */
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap; /* So it stacks on small screens */
+    margin-bottom: 2rem;
+
+  }
+
+.movieInfo {
+  padding: 0.5rem;
+  color: #1a2e2b;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.background{
+    background-color: #f0fdfa;
+    height:100vh;
+}
+
+.rentArea {
+    align-items: center;
+    text-align: center;
+}

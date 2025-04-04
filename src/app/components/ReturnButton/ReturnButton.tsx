@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MovieRentalApi } from "@/api";
+import styles from "./ReturnButton.module.css"
 
 export default function ReturnButton({ rentalId }: { rentalId: number }) {
   const [status, setStatus] = useState<"idle" | "returning" | "done">("idle");
@@ -21,7 +22,7 @@ export default function ReturnButton({ rentalId }: { rentalId: number }) {
   };
 
   return (
-    <button onClick={handleReturn} disabled={status !== "idle"}>
+    <button className={styles.rentbutton} onClick={handleReturn} disabled={status !== "idle"}>
       {status === "idle" && "Return"}
       {status === "returning" && "Returning..."}
       {status === "done" && "Returned"}

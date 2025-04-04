@@ -5,9 +5,7 @@ import styles from "./MyRentals.module.css";
 import { useRouter } from "next/navigation";
 import { MovieRentalApi } from "@/api";
 import { Rental } from "@/types";
-import Navigation from "../Navigation/Navigation";
-import Footer from "../Footer/Footer";
-import ReturnButton from "../ReturnButton";
+import ReturnButton from "../ReturnButton/ReturnButton";
 import { jwtDecode } from "jwt-decode";
 
 interface TokenPayload {
@@ -77,7 +75,6 @@ export default function MyRentalsPageContent() {
 
   return (
     <div className={styles.page}>
-      <Navigation />
       <main className={styles.mainContent}>
         <h1>My Rentals</h1>
 
@@ -103,7 +100,6 @@ export default function MyRentalsPageContent() {
           </ul>
         )}
       </main>
-      <Footer />
     </div>
   );
 }
