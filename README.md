@@ -17,3 +17,7 @@ npm install
 "email": "admin@admin.com",
 "password": "hopverkefni1"
 ```
+
+## Link to running site, Database expires on May 4th 2025
+
+https://hopverkefni2-omega.vercel.app/ 
