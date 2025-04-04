@@ -1,9 +1,9 @@
-# Hopverkefni 2, React frontend to our api service
+# Hopverkefni 2, React NextJS frontend to our api service
 
 # Team
-Jakob Daníel Vigfússon, HÍ Email: jdv4@hi.is
+Name: Jakob Daníel Vigfússon, Github username: kobbi1,  HÍ Email: jdv4@hi.is
 
-Omar Altabbaa, HÍ Email: oma9@hi.is
+Omar Altabbaa, Github username: OmarAltabbaa, HÍ Email: oma9@hi.is
 
 
 ## Installation
