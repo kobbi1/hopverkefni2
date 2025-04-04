@@ -12,7 +12,7 @@ Omar Altabbaa, Github username: OmarAltabbaa, HÍ Email: oma9@hi.is
 npm install
 ```
 
-**Admin Account Login Information:**
+## Admin Account Login Information:
 ```bash
 "email": "admin@admin.com",
 "password": "hopverkefni1"
