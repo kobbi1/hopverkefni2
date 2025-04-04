@@ -1,5 +1,5 @@
 .page {
-    background-color: #f0fdfa; /* soft mint/neutral */
+    background-color: #f0fdfa;
     height:100vh;
     padding-bottom: 2rem;
 
@@ -11,7 +11,7 @@
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-wrap: wrap;
     max-width: 1000px;
     padding: 2rem;
   }

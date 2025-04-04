@@ -8,7 +8,7 @@ http://localhost:5050
 https://vef-2025-h1.onrender.com
 
 */
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:5050";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://vef-2025-h1.onrender.com";
 
 export class MovieRentalApi {
     private async fetchFromApi<T>(url: string, options?: RequestInit): Promise<T | null> {
